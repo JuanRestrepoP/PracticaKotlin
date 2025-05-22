@@ -49,6 +49,7 @@
                 android:minHeight="48dp"
                 android:layout_height="48dp"
                 android:textColorHint="#888888"
+                android:textColor="@color/black"
                 />
 
             <TextView
@@ -72,6 +73,7 @@
                 android:minHeight="48dp"
                 android:layout_height="48dp"
                 android:textColorHint="#888888"
+                android:textColor="@color/black"
                 />
 
             <TextView

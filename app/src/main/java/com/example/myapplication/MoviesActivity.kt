@@ -23,6 +23,10 @@ class MoviesActivity : AppCompatActivity() {
                     replaceFragment(RecyclerFragment())
                     true
                 }
+                R.id.nav_profile -> {
+                    replaceFragment(ProfileFragment())
+                    true
+                }
                 else -> false
             }
         }
