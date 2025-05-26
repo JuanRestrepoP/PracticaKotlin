@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
                     if (user != null) {
                         prefs.edit()
                             .putString("email", user.mail)
+                            .putString("name", user.name)
                             .apply()
 
                         startActivity(Intent(this@MainActivity, MoviesActivity::class.java))
