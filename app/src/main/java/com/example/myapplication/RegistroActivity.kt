@@ -32,9 +32,9 @@ class RegistroActivity : AppCompatActivity() {
             val userNameText = username.text.toString()
             val userMail = mail.text.toString()
             val userPass = password.text.toString()
-            Log.d("RegistroActivity", "Nombre: $userNameText")
-            Log.d("RegistroActivity", "Email: $userMail")
-            Log.d("RegistroActivity", "Contraseña: $userPass")
+//            Log.d("RegistroActivity", "Nombre: $userNameText")
+//            Log.d("RegistroActivity", "Email: $userMail")
+//            Log.d("RegistroActivity", "Contraseña: $userPass")
 
             if (userNameText.isNotEmpty() && userMail.isNotEmpty() && userPass.isNotEmpty()) {
                 val db = AppDatabase.getDatabase(this)
