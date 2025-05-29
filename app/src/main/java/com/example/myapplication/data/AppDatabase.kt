@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
+const val USER_SESSION_PREFS = "user_session"
 @Database(entities = [User::class, Like::class], version = 3)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao

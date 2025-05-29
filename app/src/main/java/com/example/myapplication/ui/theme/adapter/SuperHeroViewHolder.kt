@@ -25,7 +25,7 @@ class SuperHeroViewHolder(
     private val superhero = view.findViewById<TextView>(R.id.textView)
     private val marca = view.findViewById<TextView>(R.id.textView2)
     private val realName = view.findViewById<TextView>(R.id.textView3)
-    private val foto = view.findViewById<ImageView>(R.id.imageView)
+    private val foto = view.findViewById<ImageView>(R.id.posterMovie)
     private val likeButton = view.findViewById<LottieAnimationView>(R.id.like_image_view)
 
     fun render(superHeroModel: Movie) {
@@ -37,7 +37,7 @@ class SuperHeroViewHolder(
         Glide.with(foto.context).load(imageUrl).into(foto)
 
         CoroutineScope(Dispatchers.IO).launch {
-            val isItemLiked = db.likeDao().isItemLiked(superHeroModel.id.toString(), userEmail)
+            val isItemLiked = db.likeDao().isItemLiked(superHeroModel.id, userEmail)
             withContext(Dispatchers.Main) {
                 if (isItemLiked) {
                     likeButton.setAnimation(R.raw.bandai_dokkan)
@@ -50,7 +50,7 @@ class SuperHeroViewHolder(
 
         likeButton.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                val liked = db.likeDao().isItemLiked(superHeroModel.id.toString(), userEmail)
+                val liked = db.likeDao().isItemLiked(superHeroModel.id, userEmail)
                 if (!liked) {
                     db.likeDao().insert(
                         Like(
@@ -63,7 +63,7 @@ class SuperHeroViewHolder(
                         likeButton.playAnimation()
                     }
                 } else {
-                    db.likeDao().deleteLike(superHeroModel.id.toString(), userEmail)
+                    db.likeDao().deleteLike(superHeroModel.id, userEmail)
                     withContext(Dispatchers.Main) {
                         likeButton.setImageResource(R.drawable.like)
                     }

@@ -7,6 +7,7 @@ import android.view.*
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.myapplication.data.USER_SESSION_PREFS
 
 class ProfileFragment : Fragment() {
 
@@ -16,7 +17,7 @@ class ProfileFragment : Fragment() {
     ): View {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        val prefs = requireActivity().getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val prefs = requireActivity().getSharedPreferences(USER_SESSION_PREFS, Context.MODE_PRIVATE)
         val name = prefs.getString("name", "Nombre no disponible")
         val email = prefs.getString("email", "Correo no disponible")
 
@@ -29,7 +30,7 @@ class ProfileFragment : Fragment() {
 
         val logoutButton = view.findViewById<Button>(R.id.buttonLogOut)
         logoutButton.setOnClickListener {
-            val prefs = requireActivity().getSharedPreferences("user_session", Context.MODE_PRIVATE)
+            val prefs = requireActivity().getSharedPreferences(USER_SESSION_PREFS, Context.MODE_PRIVATE)
             prefs.edit().clear().apply()
 
             val intent = Intent(requireActivity(), MainActivity::class.java)

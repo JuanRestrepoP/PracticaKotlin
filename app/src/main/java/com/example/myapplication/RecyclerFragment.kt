@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.example.myapplication.data.AppDatabase
 import com.example.myapplication.data.Like
+import com.example.myapplication.data.USER_SESSION_PREFS
 import com.example.myapplication.servicies.ApiInterface
 import com.example.myapplication.servicies.ApiServices
 import com.example.myapplication.ui.theme.adapter.SuperHeroAdapter
@@ -33,7 +34,7 @@ class RecyclerFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerSuperHero)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val prefs = requireContext().getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val prefs = requireContext().getSharedPreferences(USER_SESSION_PREFS, Context.MODE_PRIVATE)
         val email = prefs.getString("email", null)
 
         if (email != null) {
@@ -55,11 +56,17 @@ class RecyclerFragment : Fragment() {
         val apiService = ApiServices.getIntance().create(ApiInterface::class.java)
         apiService.getMovies().enqueue(object : Callback<Movies> {
             override fun onResponse(call: Call<Movies>, response: Response<Movies>) {
-                response.body()?.results?.let { callback(it) }
+                if (response.isSuccessful && response.body() != null) {
+                    response.body()?.results?.let { callback(it) }
+                } else {
+                    Toast.makeText(requireContext(), "No se pudo obtener la información", Toast.LENGTH_SHORT).show()
+                    callback(emptyList())
+                }
             }
 
             override fun onFailure(call: Call<Movies>, t: Throwable) {
                 Toast.makeText(requireContext(), "Error al cargar datos", Toast.LENGTH_SHORT).show()
+                callback(emptyList())
             }
         })
     }
