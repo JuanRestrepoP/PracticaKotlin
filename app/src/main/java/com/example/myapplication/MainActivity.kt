@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.data.AppDatabase
+import com.example.myapplication.data.USER_SESSION_PREFS
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
 
-        val prefs = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(USER_SESSION_PREFS, Context.MODE_PRIVATE)
         val userEmail = prefs.getString("email", null)
         if (userEmail != null) {
             startActivity(Intent(this, MoviesActivity::class.java))

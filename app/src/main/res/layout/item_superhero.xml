@@ -8,7 +8,7 @@
     android:background="@color/white">
 
     <View
-        android:id="@+id/view2"
+        android:id="@+id/viewItem"
         android:layout_width="370dp"
         android:layout_height="236dp"
         android:layout_margin="16dp"
@@ -18,14 +18,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/posterMovie"
         android:layout_width="106dp"
         android:layout_height="136dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintBottom_toBottomOf="@+id/viewItem"
+        app:layout_constraintStart_toStartOf="@+id/viewItem"
+        app:layout_constraintTop_toTopOf="@+id/viewItem"
         app:layout_constraintVertical_bias="0.0"
         tools:srcCompat="@tools:sample/avatars" />
 
@@ -39,9 +39,9 @@
         android:textColor="@color/black"
         android:maxLines="1"
         android:ellipsize="end"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintStart_toEndOf="@+id/posterMovie"
+        app:layout_constraintEnd_toEndOf="@+id/viewItem"
+        app:layout_constraintTop_toTopOf="@+id/posterMovie" />
 
     <TextView
         android:id="@+id/textView2"
@@ -53,8 +53,8 @@
         android:textColor="@color/black"
         android:maxLines="1"
         android:ellipsize="end"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintStart_toEndOf="@+id/posterMovie"
+        app:layout_constraintEnd_toEndOf="@+id/viewItem"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
@@ -68,9 +68,20 @@
         android:textColor="@color/black"
         android:maxLines="3"
         android:ellipsize="end"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintStart_toEndOf="@+id/posterMovie"
+        app:layout_constraintEnd_toEndOf="@+id/viewItem"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView" />
+        app:layout_constraintBottom_toBottomOf="@+id/posterMovie" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/like_image_view"
+        android:layout_width="32dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewItem"
+        app:layout_constraintStart_toStartOf="@+id/viewItem"
+        app:layout_constraintTop_toBottomOf="@+id/posterMovie"
+        app:layout_constraintVertical_bias="0.483"
+        app:srcCompat="@drawable/like" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
