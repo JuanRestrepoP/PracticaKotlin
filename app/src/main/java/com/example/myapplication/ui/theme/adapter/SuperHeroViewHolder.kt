@@ -9,7 +9,7 @@ import com.example.myapplication.R
 import com.bumptech.glide.Glide
 import com.example.myapplication.Movie
 import com.example.myapplication.data.AppDatabase
-import com.example.myapplication.data.Like
+import com.example.likeutils.data.Like
 import com.example.myapplication.servicies.ApiServices.Companion.IMAGE_URL
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

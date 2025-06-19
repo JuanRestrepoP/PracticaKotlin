@@ -16,7 +16,6 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
 
         val prefs = getSharedPreferences(USER_SESSION_PREFS, Context.MODE_PRIVATE)

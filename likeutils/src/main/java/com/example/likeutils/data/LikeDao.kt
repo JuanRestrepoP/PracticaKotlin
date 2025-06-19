@@ -1,4 +1,4 @@
-package com.example.myapplication.data
+package com.example.likeutils.data
 
 import androidx.room.Dao
 import androidx.room.Insert

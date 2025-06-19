@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.lottie.LottieAnimationView
 import com.example.myapplication.data.AppDatabase
-import com.example.myapplication.data.Like
 import com.example.myapplication.data.USER_SESSION_PREFS
 import com.example.myapplication.servicies.ApiInterface
 import com.example.myapplication.servicies.ApiServices

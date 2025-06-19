@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.likeutils.data.Like
+import com.example.likeutils.data.LikeDao
 
 const val USER_SESSION_PREFS = "user_session"
 @Database(entities = [User::class, Like::class], version = 3)
