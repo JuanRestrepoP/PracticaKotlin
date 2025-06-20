@@ -22,3 +22,5 @@ dependencyResolutionManagement {
 rootProject.name = "My Application"
 include(":app")
 include(":likeutils")
+include(":permissionutils2")
+include(":permissionutils")

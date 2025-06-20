@@ -12,12 +12,29 @@ import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.data.AppDatabase
 import com.example.myapplication.data.USER_SESSION_PREFS
 import kotlinx.coroutines.launch
+import android.Manifest
+import android.content.pm.PackageManager
+import com.example.permissionutils.PermissionHelper
+
+private val LOCATION_REQUEST_CODE = 1001
+
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setContentView(R.layout.activity_permission_waiting)
+
+        if (!PermissionHelper.checkPermission(this, Manifest.permission.ACCESS_FINE_LOCATION, LOCATION_REQUEST_CODE)) {
+
+            return
+        }
+
+        iniciarUI()
+    }
+
+    private fun iniciarUI() {
         val prefs = getSharedPreferences(USER_SESSION_PREFS, Context.MODE_PRIVATE)
         val userEmail = prefs.getString("email", null)
         if (userEmail != null) {
@@ -63,4 +80,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == LOCATION_REQUEST_CODE && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Permiso concedido", Toast.LENGTH_SHORT).show()
+            iniciarUI()
+        } else {
+            Toast.makeText(this, "Permiso denegado", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }
