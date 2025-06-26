@@ -25,4 +25,9 @@ object LikeManager {
         }
     }
 
+    suspend fun getLikesByUser(userEmail: String, likeDao: LikeDao): List<Like> {
+        return withContext(Dispatchers.IO) {
+            likeDao.getLikesByUser(userEmail)
+        }
+    }
 }

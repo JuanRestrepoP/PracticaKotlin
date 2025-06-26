@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.Movie
 import com.example.myapplication.data.AppDatabase
 import com.example.likeutils.data.Like
+import com.example.myapplication.data.MovieEntity
 import com.example.myapplication.servicies.ApiServices.Companion.IMAGE_URL
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -52,6 +53,14 @@ class SuperHeroViewHolder(
             CoroutineScope(Dispatchers.IO).launch {
                 val liked = db.likeDao().isItemLiked(superHeroModel.id, userEmail)
                 if (!liked) {
+                    db.movieDao().insert(
+                        MovieEntity(
+                            id = superHeroModel.id,
+                            original_title = superHeroModel.original_title ?: "",
+                            overview = superHeroModel.overview ?: "",
+                            poster_path = superHeroModel.poster_path ?: ""
+                        )
+                    )
                     db.likeDao().insert(
                         Like(
                             itemId = superHeroModel.id,

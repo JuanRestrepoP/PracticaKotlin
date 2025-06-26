@@ -27,6 +27,10 @@ class MoviesActivity : AppCompatActivity() {
                     replaceFragment(ProfileFragment())
                     true
                 }
+                R.id.nav_play -> {
+                    replaceFragment(LikedItemsFragment())
+                    true
+                }
                 else -> false
             }
         }

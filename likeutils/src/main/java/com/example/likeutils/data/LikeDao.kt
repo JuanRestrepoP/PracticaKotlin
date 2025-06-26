@@ -18,4 +18,7 @@ interface LikeDao {
 
     @Query("DELETE FROM liked_items WHERE itemId = :itemId AND userEmail = :userEmail")
     suspend fun deleteLike(itemId: Long, userEmail: String)
+
+    @Query("SELECT * FROM liked_items WHERE userEmail = :email")
+    suspend fun getLikesByUser(email: String): List<Like>
 }

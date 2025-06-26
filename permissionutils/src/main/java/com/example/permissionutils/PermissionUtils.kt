@@ -7,7 +7,7 @@ import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 
 object PermissionUtils {
-
+/*
     fun isLocationPermissionGranted(context: Context): Boolean {
         return ActivityCompat.checkSelfPermission(
             context,
@@ -21,4 +21,6 @@ object PermissionUtils {
             requestCode
         )
     }
+    */
+
 }
