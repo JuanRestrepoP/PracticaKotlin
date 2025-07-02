@@ -21,4 +21,17 @@ interface LikeDao {
 
     @Query("SELECT * FROM liked_items WHERE userEmail = :email")
     suspend fun getLikesByUser(email: String): List<Like>
+
+    @Query("""
+    SELECT itemId, COUNT(*) as likeCount 
+    FROM liked_items 
+    GROUP BY itemId 
+    ORDER BY likeCount DESC 
+    LIMIT 10
+""")
+    suspend fun getTopLikedItems(): List<TopLike>
+
+    @Query("SELECT COUNT(*) FROM liked_items WHERE itemId = :itemId")
+    suspend fun getLikesCountForItem(itemId: Long): Long
+
 }

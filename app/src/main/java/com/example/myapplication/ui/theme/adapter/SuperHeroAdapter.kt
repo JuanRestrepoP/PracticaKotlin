@@ -10,13 +10,14 @@ import com.example.myapplication.data.AppDatabase
 class SuperHeroAdapter(
     private val superheroList: List<Movie>,
     private val userEmail: String,
-    private val db: AppDatabase
+    private val db: AppDatabase,
+    private val onLikeChanged: () -> Unit
 ) : RecyclerView.Adapter<SuperHeroViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuperHeroViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.item_superhero, parent, false)
-        return SuperHeroViewHolder(view, userEmail, db)
+        return SuperHeroViewHolder(view, userEmail, db, onLikeChanged)
     }
 
     override fun onBindViewHolder(holder: SuperHeroViewHolder, position: Int) {

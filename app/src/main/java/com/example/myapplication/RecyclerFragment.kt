@@ -41,7 +41,10 @@ class RecyclerFragment : Fragment() {
                 recyclerView.adapter = SuperHeroAdapter(
                     superheroList = movies,
                     userEmail = email,
-                    db = db
+                    db = db,
+                    onLikeChanged = {
+                        parentFragmentManager.setFragmentResult("likeChanged", Bundle())
+                    }
                 )
             }
         }

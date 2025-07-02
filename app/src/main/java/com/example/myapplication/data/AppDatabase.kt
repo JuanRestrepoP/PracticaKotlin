@@ -8,7 +8,7 @@ import com.example.likeutils.data.Like
 import com.example.likeutils.data.LikeDao
 
 const val USER_SESSION_PREFS = "user_session"
-@Database(entities = [User::class, Like::class, MovieEntity::class], version = 4)
+@Database(entities = [User::class, Like::class, MovieEntity::class], version = 5)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun likeDao(): LikeDao

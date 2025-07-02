@@ -1,9 +1,12 @@
 package com.example.myapplication.ui.theme.adapter
 
+import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentActivity
 import com.airbnb.lottie.LottieAnimationView
 import com.example.myapplication.R
 import com.bumptech.glide.Glide
@@ -20,7 +23,8 @@ import kotlinx.coroutines.withContext
 class SuperHeroViewHolder(
     private val view: View,
     private val userEmail: String,
-    private val db: AppDatabase
+    private val db: AppDatabase,
+    private val onLikeChanged: () -> Unit
 ) : RecyclerView.ViewHolder(view) {
 
     private val superhero = view.findViewById<TextView>(R.id.textView)
@@ -56,9 +60,9 @@ class SuperHeroViewHolder(
                     db.movieDao().insert(
                         MovieEntity(
                             id = superHeroModel.id,
-                            original_title = superHeroModel.original_title ?: "",
-                            overview = superHeroModel.overview ?: "",
-                            poster_path = superHeroModel.poster_path ?: ""
+                            original_title = superHeroModel.original_title.toString(),
+                            overview = superHeroModel.overview.toString(),
+                            poster_path = superHeroModel.poster_path.toString()
                         )
                     )
                     db.likeDao().insert(
@@ -67,17 +71,26 @@ class SuperHeroViewHolder(
                             userEmail = userEmail
                         )
                     )
-                    withContext(Dispatchers.Main) {
-                        likeButton.setAnimation(R.raw.bandai_dokkan)
-                        likeButton.playAnimation()
-                    }
+
                 } else {
                     db.likeDao().deleteLike(superHeroModel.id, userEmail)
-                    withContext(Dispatchers.Main) {
+                }
+
+                withContext(Dispatchers.Main) {
+                    if (!liked) {
+                        likeButton.setAnimation(R.raw.bandai_dokkan)
+                        likeButton.playAnimation()
+                        (view.context as? FragmentActivity)?.supportFragmentManager
+                            ?.setFragmentResult("likeChanged", Bundle())
+                    } else {
                         likeButton.setImageResource(R.drawable.like)
+                        (view.context as? FragmentActivity)?.supportFragmentManager
+                            ?.setFragmentResult("likeChanged", Bundle())
                     }
+                    onLikeChanged()
                 }
             }
         }
+
     }
 }
